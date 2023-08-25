@@ -1,37 +1,25 @@
-name: 'Publish application'
-on: push
+name: 'Publish application GH Pages'
+on:
+  push:
+    branches: [ master ]
 
 jobs:
-  build:
+  deploy-to-github-pages:
     runs-on: ubuntu-latest
     steps:
-        # Checkout the code
-        - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-        # Install .NET Core SDK
-        - name: Setup .NET Core
-          uses: actions/setup-dotnet@v2
-          with:
-            dotnet-version: 8.0.100-preview.4.23260.5
+      - name: Setup .Net SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 8.0
 
-        # Run tests
-        - name: Test
-          run: dotnet test
+      - name: Publish .NET Project
+        run: dotnet publish MapaConhecimentoCSharpDotNet.sln -c Release -o release --nologo
 
-        # Generate the website
-        - name: Publish
-          run: dotnet publish MapaConhecimentoCSharpDotNet.sln --configuration Release
-
-        # Publish the website
-        - name: GitHub Pages action
-          if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
-          uses: peaceiris/actions-gh-pages@v3.6.1
-          with:
-            github_token: ${{ secrets.MAPA_CONHECIMENTO_DEPLOY_KEY }}
-            publish_branch: gh-pages
-            publish_dir: MCBlazor/bin/Release/net8.0/publish/wwwroot
-            allow_empty_commit: false
-            keep_files: false
-            force_orphan: true
-            # TODO uncomment the following line if you have a custom domain name
-            # cname: demo.meziantou.net
+      - name: Commit wwwroot to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: release/wwwroot
