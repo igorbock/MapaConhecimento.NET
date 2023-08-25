@@ -7,12 +7,12 @@ jobs:
   deploy-to-github-pages:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup .Net SDK
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0
+          dotnet-version: 8.0.0-preview.4.23260.4
 
       - name: Publish .NET Project
         run: dotnet publish MapaConhecimentoCSharpDotNet.sln -c Release -o release --nologo
