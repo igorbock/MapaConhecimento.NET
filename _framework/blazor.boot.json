@@ -14,7 +14,7 @@
   "pthreadPoolSize": null,
   "resources": {
     "assembly": {
-      "MCBlazor.wasm": "sha256-JonczmRcyz1jp9T69JAjUKyk\/Xy9wPO0q\/oJoUjtjcQ=",
+      "MCBlazor.wasm": "sha256-KcZAU6R8uz382KarOI8YvUb9CBkLaTGejC2RR8WJohc=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-dk10kb\/jhqD47uzea9Se2Q+vEzsMsfn7AkguCAteO6s=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-5IRqlMlHDSt9vuc+kfXSP5knrYbZcNKRtfKplkTNNIA=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-6VVwODF7i0RMziBOdIX03ZMENPXcCHdPQu\/7H6+Nlx4=",
